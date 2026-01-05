@@ -39,17 +39,14 @@ export function SignIn() {
 
   return (
     <div className="min-h-screen relative flex items-center justify-center overflow-hidden bg-linear-to-br from-amber-100 via-orange-100 to-yellow-100">
-      {/* soft background glow */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,200,100,0.4),transparent_60%)]" />
 
-      {/* glass card */}
       <div className="relative w-full max-w-md rounded-2xl bg-white/70 backdrop-blur-xl shadow-xl p-8">
         <h2 className="text-2xl font-semibold text-gray-800 text-center mb-6">
           Access your account
         </h2>
 
         <div className="space-y-4">
-          {/* Email */}
           <div>
             <label className="text-sm text-gray-600 block mb-1">
               Email Address
@@ -63,7 +60,6 @@ export function SignIn() {
             />
           </div>
 
-          {/* Password */}
           <div>
             <label className="text-sm text-gray-600 block mb-1">Password</label>
             <input
