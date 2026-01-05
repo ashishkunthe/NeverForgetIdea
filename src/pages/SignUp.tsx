@@ -36,7 +36,7 @@ export function SignUp() {
   }
 
   return (
-    <div className="min-h-screen relative flex items-center justify-center overflow-hidden bg-gradient-to-br from-amber-100 via-orange-100 to-yellow-100">
+    <div className="min-h-screen relative flex items-center justify-center overflow-hidden bg-linear-to-br from-amber-100 via-orange-100 to-yellow-100">
       {/* decorative background blur */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,200,100,0.4),transparent_60%)]" />
 

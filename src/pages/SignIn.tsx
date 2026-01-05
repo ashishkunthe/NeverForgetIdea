@@ -29,7 +29,6 @@ export function SignIn() {
       }
 
       localStorage.setItem("token", data.token);
-      alert(data.message);
       navigate("/ideas");
     } catch (error) {
       alert("Invalid credentials");
@@ -39,45 +38,60 @@ export function SignIn() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-amber-200">
-      <div className="w-full max-w-md bg-white rounded-2xl p-8">
+    <div className="min-h-screen relative flex items-center justify-center overflow-hidden bg-linear-to-br from-amber-100 via-orange-100 to-yellow-100">
+      {/* soft background glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,200,100,0.4),transparent_60%)]" />
+
+      {/* glass card */}
+      <div className="relative w-full max-w-md rounded-2xl bg-white/70 backdrop-blur-xl shadow-xl p-8">
         <h2 className="text-2xl font-semibold text-gray-800 text-center mb-6">
           Access your account
         </h2>
 
         <div className="space-y-4">
-          <input
-            type="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-4 py-3 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-amber-500"
-          />
+          {/* Email */}
+          <div>
+            <label className="text-sm text-gray-600 block mb-1">
+              Email Address
+            </label>
+            <input
+              type="email"
+              placeholder="name@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full px-4 py-3 rounded-lg border bg-white/80 focus:outline-none focus:ring-2 focus:ring-amber-400"
+            />
+          </div>
 
-          <input
-            type="password"
-            placeholder="Enter your password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-4 py-3 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-amber-500"
-          />
+          {/* Password */}
+          <div>
+            <label className="text-sm text-gray-600 block mb-1">Password</label>
+            <input
+              type="password"
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full px-4 py-3 rounded-lg border bg-white/80 focus:outline-none focus:ring-2 focus:ring-amber-400"
+            />
+          </div>
 
+          {/* CTA */}
           <button
             onClick={handleSignIn}
             disabled={loading || !email || !password}
-            className="w-full bg-amber-600 text-white py-3 rounded-lg font-medium hover:bg-amber-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full mt-4 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold py-3 rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading ? "Signing in..." : "Sign In"}
           </button>
         </div>
 
-        <p className="text-sm text-gray-500 text-center mt-6">
+        <p className="text-sm text-gray-600 text-center mt-6">
           Don’t have an account?{" "}
           <span
             className="text-amber-600 cursor-pointer hover:underline"
             onClick={() => navigate("/signup")}
           >
-            Sign up
+            Create Account
           </span>
         </p>
       </div>
