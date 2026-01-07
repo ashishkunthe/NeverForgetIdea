@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { AddIdeaModule } from "../components/AddIdeas";
+import { useNavigate } from "react-router-dom";
 
 const BACKEND_URL = "http://localhost:5000/idea/all";
 
@@ -28,6 +29,7 @@ function getHeaderStyle(id: string) {
 export function AllIdeas() {
   const [ideas, setIdeas] = useState<Ideas[]>([]);
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchIdeas() {
@@ -95,7 +97,10 @@ export function AllIdeas() {
                   {idea.mainIdea}
                 </p>
 
-                <button className="mt-3 text-sm font-medium text-amber-600 hover:underline">
+                <button
+                  onClick={() => navigate(`/idea/${idea._id}`)}
+                  className="mt-3 text-sm font-medium text-amber-600 hover:underline"
+                >
                   View Details →
                 </button>
               </div>

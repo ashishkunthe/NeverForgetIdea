@@ -3,6 +3,7 @@ import { SignUp } from "./pages/SignUp";
 import { SignIn } from "./pages/SignIn";
 import { ProtectedRoute } from "./components/ProtectedRoutes";
 import { AllIdeas } from "./pages/AllIdeas";
+import { Idea } from "./pages/Idea";
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route element={<ProtectedRoute />}>
           <Route path="/ideas" element={<AllIdeas />} />
+          <Route path="/idea/:id" element={<Idea />} />
         </Route>
       </Routes>
     </BrowserRouter>
