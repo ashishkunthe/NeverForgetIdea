@@ -38,56 +38,81 @@ export function SignIn() {
   }
 
   return (
-    <div className="min-h-screen relative flex items-center justify-center overflow-hidden bg-linear-to-br from-amber-100 via-orange-100 to-yellow-100">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,200,100,0.4),transparent_60%)]" />
-
-      <div className="relative w-full max-w-md rounded-2xl bg-white/70 backdrop-blur-xl shadow-xl p-8">
-        <h2 className="text-2xl font-semibold text-gray-800 text-center mb-6">
-          Access your account
+    <div className="min-h-screen flex items-center justify-center bg-white p-6">
+      <div className="w-full max-w-md rounded-xl border border-black/10 bg-white shadow-lg p-8">
+        <h2 className="text-2xl font-semibold text-black text-center mb-6">
+          Sign in
         </h2>
 
         <div className="space-y-4">
           <div>
-            <label className="text-sm text-gray-600 block mb-1">
-              Email Address
-            </label>
+            <label className="text-sm text-black/70 block mb-1">Email</label>
             <input
               type="email"
-              placeholder="name@example.com"
+              placeholder="you@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-3 rounded-lg border bg-white/80 focus:outline-none focus:ring-2 focus:ring-amber-400"
+              className="
+                w-full px-4 py-3
+                rounded-lg
+                border border-black/20
+                bg-white
+                text-black
+                placeholder:text-black/40
+                focus:outline-none
+                focus:ring-2
+                focus:ring-black
+              "
             />
           </div>
 
           <div>
-            <label className="text-sm text-gray-600 block mb-1">Password</label>
+            <label className="text-sm text-black/70 block mb-1">Password</label>
             <input
               type="password"
-              placeholder="Enter your password"
+              placeholder="••••••••"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-3 rounded-lg border bg-white/80 focus:outline-none focus:ring-2 focus:ring-amber-400"
+              className="
+                w-full px-4 py-3
+                rounded-lg
+                border border-black/20
+                bg-white
+                text-black
+                placeholder:text-black/40
+                focus:outline-none
+                focus:ring-2
+                focus:ring-black
+              "
             />
           </div>
 
-          {/* CTA */}
           <button
             onClick={handleSignIn}
             disabled={loading || !email || !password}
-            className="w-full mt-4 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold py-3 rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed"
+            className="
+              w-full mt-4
+              bg-black
+              hover:bg-black/90
+              text-white
+              font-medium
+              py-3
+              rounded-lg
+              transition
+              disabled:opacity-50
+            "
           >
-            {loading ? "Signing in..." : "Sign In"}
+            {loading ? "Signing in..." : "Sign in"}
           </button>
         </div>
 
-        <p className="text-sm text-gray-600 text-center mt-6">
+        <p className="text-sm text-black/60 text-center mt-6">
           Don’t have an account?{" "}
           <span
-            className="text-amber-600 cursor-pointer hover:underline"
+            className="text-black font-medium cursor-pointer hover:underline"
             onClick={() => navigate("/signup")}
           >
-            Create Account
+            Create one
           </span>
         </p>
       </div>

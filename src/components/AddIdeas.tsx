@@ -41,54 +41,113 @@ export function AddIdeaModule({ setIsOpen }: any) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
+      {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+        className="absolute inset-0 bg-black/70 backdrop-blur-sm"
         onClick={() => setIsOpen(false)}
       />
 
-      <div className="relative bg-white rounded-2xl shadow-xl w-full max-w-md p-6 z-10">
-        <button
-          onClick={() => setIsOpen(false)}
-          className="absolute top-3 right-3 text-gray-500 hover:text-gray-700"
-        >
-          ✕
-        </button>
+      {/* Modal */}
+      <div className="relative w-full max-w-md rounded-2xl bg-[#111] text-white shadow-2xl z-10 overflow-hidden">
+        {/* Header */}
+        <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
+          <h3 className="text-lg font-semibold">Create New Idea</h3>
+          <button
+            onClick={() => setIsOpen(false)}
+            className="text-white/60 hover:text-white transition"
+          >
+            ✕
+          </button>
+        </div>
 
-        <h3 className="text-xl font-semibold text-gray-800 mb-4">
-          Add New Idea
-        </h3>
-
-        <div className="space-y-3">
+        {/* Content */}
+        <div className="p-6 space-y-4">
           <input
             type="text"
             placeholder="Title"
-            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
             onChange={(e) => setTitle(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="What Is Your Main Idea"
-            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
-            onChange={(e) => setMainIdea(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="How you thinking to achieve it ?"
-            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
-            onChange={(e) => setHowToAchieve(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="What is Your motivation for this idea ? "
-            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
-            onChange={(e) => setMotivation(e.target.value)}
+            className="
+              w-full px-4 py-2
+              rounded-lg
+              bg-white/5
+              border border-white/10
+              placeholder:text-white/40
+              text-white
+              focus:outline-none
+              focus:ring-2
+              focus:ring-gray-300
+            "
           />
 
+          <input
+            type="text"
+            placeholder="What is your main idea?"
+            onChange={(e) => setMainIdea(e.target.value)}
+            className="
+              w-full px-4 py-2
+              rounded-lg
+              bg-white/5
+              border border-white/10
+              placeholder:text-white/40
+              text-white
+              focus:outline-none
+              focus:ring-2
+              focus:ring-gray-300
+            "
+          />
+
+          <input
+            type="text"
+            placeholder="How do you plan to achieve it?"
+            onChange={(e) => setHowToAchieve(e.target.value)}
+            className="
+              w-full px-4 py-2
+              rounded-lg
+              bg-white/5
+              border border-white/10
+              placeholder:text-white/40
+              text-white
+              focus:outline-none
+              focus:ring-2
+              focus:ring-gray-300
+            "
+          />
+
+          <input
+            type="text"
+            placeholder="What motivates you?"
+            onChange={(e) => setMotivation(e.target.value)}
+            className="
+              w-full px-4 py-2
+              rounded-lg
+              bg-white/5
+              border border-white/10
+              placeholder:text-white/40
+              text-white
+              focus:outline-none
+              focus:ring-2
+              focus:ring-gray-300
+            "
+          />
+
+          {/* Action */}
           <button
             onClick={submit}
-            className="w-full bg-amber-500 hover:bg-amber-600 text-white py-2 rounded-lg font-medium transition"
+            disabled={isLoading}
+            className="
+              mt-2
+              w-full
+              py-2.5
+              rounded-lg
+              bg-white
+              hover:bg-gray-200
+              disabled:opacity-50
+              text-black
+              font-medium
+              transition
+            "
           >
-            {isLoading ? "Loading..." : "Save Idea"}
+            {isLoading ? "Saving..." : "Save Idea"}
           </button>
         </div>
       </div>

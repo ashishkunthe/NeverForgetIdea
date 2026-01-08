@@ -36,89 +36,104 @@ export function SignUp() {
   }
 
   return (
-    <div className="min-h-screen relative flex items-center justify-center overflow-hidden bg-linear-to-br from-amber-100 via-orange-100 to-yellow-100">
-      {/* decorative background blur */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,200,100,0.4),transparent_60%)]" />
-
-      {/* card */}
-      <div className="relative w-full max-w-md rounded-2xl bg-white/70 backdrop-blur-xl shadow-xl p-8">
-        <h2 className="text-2xl font-semibold text-gray-800 text-center mb-6">
-          Create Account
+    <div className="min-h-screen flex items-center justify-center bg-white p-6">
+      <div className="w-full max-w-md rounded-xl border border-black/10 bg-white shadow-lg p-8">
+        <h2 className="text-2xl font-semibold text-black text-center mb-6">
+          Create account
         </h2>
 
         <div className="space-y-4">
-          {/* Full Name */}
           <div>
-            <label className="text-sm text-gray-600 block mb-1">
-              Full Name
+            <label className="text-sm text-black/70 block mb-1">
+              Full name
             </label>
             <input
               type="text"
-              placeholder="Eg. Jane Doe"
+              placeholder="Jane Doe"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full px-4 py-3 rounded-lg border bg-white/80 focus:outline-none focus:ring-2 focus:ring-amber-400"
+              className="
+                w-full px-4 py-3
+                rounded-lg
+                border border-black/20
+                bg-white
+                text-black
+                placeholder:text-black/40
+                focus:outline-none
+                focus:ring-2
+                focus:ring-black
+              "
             />
           </div>
 
-          {/* Email */}
           <div>
-            <label className="text-sm text-gray-600 block mb-1">
-              Email Address
-            </label>
+            <label className="text-sm text-black/70 block mb-1">Email</label>
             <input
               type="email"
-              placeholder="name@example.com"
+              placeholder="you@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-3 rounded-lg border bg-white/80 focus:outline-none focus:ring-2 focus:ring-amber-400"
+              className="
+                w-full px-4 py-3
+                rounded-lg
+                border border-black/20
+                bg-white
+                text-black
+                placeholder:text-black/40
+                focus:outline-none
+                focus:ring-2
+                focus:ring-black
+              "
             />
           </div>
 
-          {/* Password */}
           <div>
-            <label className="text-sm text-gray-600 block mb-1">Password</label>
+            <label className="text-sm text-black/70 block mb-1">Password</label>
             <input
               type="password"
-              placeholder="Min 8 characters"
+              placeholder="Minimum 8 characters"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-3 rounded-lg border bg-white/80 focus:outline-none focus:ring-2 focus:ring-amber-400"
+              className="
+                w-full px-4 py-3
+                rounded-lg
+                border border-black/20
+                bg-white
+                text-black
+                placeholder:text-black/40
+                focus:outline-none
+                focus:ring-2
+                focus:ring-black
+              "
             />
           </div>
 
-          {/* Terms */}
-          <div className="flex items-start gap-2 text-sm text-gray-600">
-            <input type="checkbox" className="mt-1 accent-amber-500" />
-            <p>
-              I agree to the{" "}
-              <span className="text-amber-600 cursor-pointer hover:underline">
-                Terms of Service
-              </span>{" "}
-              and{" "}
-              <span className="text-amber-600 cursor-pointer hover:underline">
-                Privacy Policy
-              </span>
-            </p>
-          </div>
-
-          {/* CTA */}
           <button
             onClick={handleSignUp}
             disabled={loading || !email || !name || !password}
-            className="w-full mt-4 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold py-3 rounded-lg transition disabled:opacity-50"
+            className="
+              w-full mt-4
+              bg-black
+              hover:bg-black/90
+              text-white
+              font-medium
+              py-3
+              rounded-lg
+              transition
+              disabled:opacity-50
+            "
           >
-            {loading ? "Creating Account..." : "Create Account"}
+            {loading ? "Creating account..." : "Create account"}
           </button>
         </div>
 
-        <p className="text-sm text-gray-600 text-center mt-6">
+        <p className="text-sm text-black/60 text-center mt-6">
           Already have an account?{" "}
           <span
-            className="text-amber-600 cursor-pointer hover:underline"
+            className="text-black font-medium cursor-pointer hover:underline"
             onClick={() => navigate("/signin")}
           >
-            Log In
+            Sign in
           </span>
         </p>
       </div>

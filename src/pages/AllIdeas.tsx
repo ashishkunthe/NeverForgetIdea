@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { AddIdeaModule } from "../components/AddIdeas";
 import { useNavigate } from "react-router-dom";
+import { NotificationSettings } from "../components/NotificationSetting";
 
 const BACKEND_URL = "http://localhost:5000/idea/all";
 
@@ -12,10 +13,9 @@ interface Ideas {
 }
 
 const headerVariants = [
-  "from-amber-400 via-yellow-400 to-orange-500",
-  "from-lime-400 via-yellow-400 to-amber-500",
-  "from-yellow-300 via-amber-400 to-orange-400",
-  "from-amber-300 via-lime-300 to-yellow-400",
+  "from-amber-600 via-orange-700 to-amber-800",
+  "from-lime-600 via-emerald-700 to-teal-800",
+  "from-yellow-600 via-amber-700 to-orange-800",
 ];
 
 function getHeaderStyle(id: string) {
@@ -29,6 +29,8 @@ function getHeaderStyle(id: string) {
 export function AllIdeas() {
   const [ideas, setIdeas] = useState<Ideas[]>([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [isSettingOpen, setIsSettingOpen] = useState(false);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -43,69 +45,102 @@ export function AllIdeas() {
     }
 
     fetchIdeas();
-  }, [ideas]);
+  }, []);
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-amber-100 via-orange-100 to-yellow-100 p-6 relative">
+    <div className="min-h-screen bg-[#f6f5f2] p-6">
+      {/* Header */}
       <div className="flex items-center justify-between mb-10">
-        <h2 className="text-2xl font-semibold text-gray-800">Your Ideas</h2>
+        <h2 className="text-2xl font-semibold text-gray-900">Your Ideas</h2>
 
-        <button
-          onClick={() => setIsOpen(true)}
-          className="
-            px-5 py-2
-            rounded-xl
-            bg-white/40
-            backdrop-blur-md
-            border border-white/30
-            shadow-md
-            text-gray-800
-            font-medium
-            hover:bg-white/60
-            transition
-    "
-        >
-          + Create Idea
-        </button>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => setIsSettingOpen(true)}
+            className="px-4 py-2 rounded-lg border border-gray-300 text-sm text-gray-700 hover:bg-gray-100 transition"
+          >
+            Notification Preferences
+          </button>
+
+          <button
+            onClick={() => setIsOpen(true)}
+            className="w-12 h-12 rounded-xl border border-dashed border-gray-300 flex items-center justify-center text-xl text-gray-600 hover:bg-gray-100 transition"
+          >
+            +
+          </button>
+        </div>
       </div>
 
       {isOpen && <AddIdeaModule setIsOpen={setIsOpen} />}
+      {isSettingOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          {/* Backdrop */}
+          <div
+            className="absolute inset-0 bg-black/40"
+            onClick={() => setIsSettingOpen(false)}
+          />
 
+          {/* Modal */}
+          <div className="relative z-50">
+            <NotificationSettings setIsSettingOpen={setIsSettingOpen} />
+          </div>
+        </div>
+      )}
+
+      {/* Cards */}
       {ideas.length > 0 ? (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {ideas.map((idea) => (
             <div
               key={idea._id}
-              className="bg-white rounded-xl border shadow-sm overflow-hidden hover:shadow-md transition"
+              className="rounded-2xl overflow-hidden bg-[#111] text-white shadow-lg hover:scale-[1.01] transition"
             >
+              {/* Gradient Header */}
               <div
-                className={`relative h-40 overflow-hidden bg-linear-to-br ${getHeaderStyle(
+                className={`relative h-44 bg-linear-to-br ${getHeaderStyle(
                   idea._id
                 )}`}
               >
-                <div className="absolute -top-10 -left-10 w-40 h-40 bg-white/25 rounded-full blur-2xl" />
-                <div className="absolute top-12 right-0 w-32 h-32 bg-black/10 rounded-full blur-2xl" />
-                <div className="absolute inset-0 bg-black/10" />
+                <div className="absolute inset-0 bg-black/40" />
 
-                <h3 className="absolute bottom-4 left-4 right-4 text-lg font-semibold text-white drop-shadow">
-                  {idea.title}
-                </h3>
+                <span className="absolute top-3 left-3 text-xs font-medium px-2 py-1 rounded-full bg-white/20 backdrop-blur">
+                  DRAFT
+                </span>
               </div>
 
-              <div className="p-4">
-                <p className="text-sm text-gray-700 line-clamp-3">
-                  {idea.mainIdea}
-                </p>
+              {/* Content */}
+              <div className="p-4 flex flex-col justify-between">
+                <div>
+                  <h3 className="text-lg font-semibold leading-snug mb-2">
+                    {idea.title}
+                  </h3>
+                  <p className="text-sm text-gray-300 line-clamp-3">
+                    {idea.mainIdea}
+                  </p>
+                </div>
 
                 <button
                   onClick={() => navigate(`/idea/${idea._id}`)}
-                  className="mt-3 text-sm font-medium text-amber-600 hover:underline"
+                  className="mt-4 inline-flex items-center justify-center gap-1 self-start px-3 py-1.5 rounded-lg bg-white text-black text-sm font-medium hover:bg-gray-200 transition"
                 >
-                  View Details →
+                  View →
                 </button>
               </div>
             </div>
           ))}
+
+          {/* Create New Idea Card */}
+          <div
+            onClick={() => setIsOpen(true)}
+            className="rounded-2xl border-2 border-dashed border-gray-300 flex items-center justify-center text-gray-500 hover:bg-gray-50 transition cursor-pointer"
+          >
+            <div className="text-center p-10">
+              <div className="text-2xl mb-2">+</div>
+              <p className="font-medium">Create New Idea</p>
+              <p className="text-sm text-gray-400">
+                Start a new execution plan
+              </p>
+            </div>
+          </div>
         </div>
       ) : (
         <div className="text-center text-gray-600 mt-20">
