@@ -1,4 +1,7 @@
+import axios from "axios";
 import { useState } from "react";
+
+const BACKEND_URL = "http://localhost:5000";
 
 export function NotificationSettings({ setIsSettingOpen }: any) {
   const [emailEnabled, setEmailEnabled] = useState(true);
@@ -6,13 +9,21 @@ export function NotificationSettings({ setIsSettingOpen }: any) {
   const [phone, setPhone] = useState("");
   const [reminderTime, setReminderTime] = useState("09:00");
 
-  function handleSave() {
-    console.log({
-      emailEnabled,
-      smsEnabled,
-      phone,
-      reminderTime,
-    });
+  async function handleSave() {
+    try {
+      const response = await axios.post(
+        `${BACKEND_URL}/user/notification/update`,
+        { emailEnabled, smsEnabled, phone, reminderTime },
+        {
+          headers: { Authorization: localStorage.getItem("token") },
+        }
+      );
+      const data = await response.data;
+      alert(data.message);
+      setIsSettingOpen(false);
+    } catch (error) {
+      console.log("error in the setting the notification");
+    }
   }
 
   return (
