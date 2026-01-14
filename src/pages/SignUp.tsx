@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const BACKEND_URL = `${import.meta.env.BACKEND_URL}/auth/signup`;
+const BACKEND_URL = `${import.meta.env.VITE_BACKEND_URL}/auth/signup`;
 
 export function SignUp() {
   const [email, setEmail] = useState("");

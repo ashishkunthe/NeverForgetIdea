@@ -4,7 +4,7 @@ import { AddIdeaModule } from "../components/AddIdeas";
 import { useNavigate } from "react-router-dom";
 import { NotificationSettings } from "../components/NotificationSetting";
 
-const BACKEND_URL = `${import.meta.env.BACKEND_URL}/idea/all`;
+const BACKEND_URL = `${import.meta.env.VITE_BACKEND_URL}/idea/all`;
 
 interface Ideas {
   _id: string;

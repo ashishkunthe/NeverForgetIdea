@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 
-const BACKEND_URL = import.meta.env.BACKEND_URL;
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 export function NotificationSettings({ setIsSettingOpen }: any) {
   const [emailEnabled, setEmailEnabled] = useState(true);
