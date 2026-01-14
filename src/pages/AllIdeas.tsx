@@ -4,7 +4,7 @@ import { AddIdeaModule } from "../components/AddIdeas";
 import { useNavigate } from "react-router-dom";
 import { NotificationSettings } from "../components/NotificationSetting";
 
-const BACKEND_URL = "http://localhost:5000/idea/all";
+const BACKEND_URL = `${import.meta.env.BACKEND_URL}/idea/all`;
 
 interface Ideas {
   _id: string;
@@ -32,6 +32,11 @@ export function AllIdeas() {
   const [isSettingOpen, setIsSettingOpen] = useState(false);
 
   const navigate = useNavigate();
+
+  function handleLogout() {
+    localStorage.removeItem("token");
+    navigate("/signin");
+  }
 
   useEffect(() => {
     async function fetchIdeas() {
@@ -66,6 +71,12 @@ export function AllIdeas() {
             className="w-12 h-12 rounded-xl border border-dashed border-gray-300 flex items-center justify-center text-xl text-gray-600 hover:bg-gray-100 transition"
           >
             +
+          </button>
+          <button
+            onClick={handleLogout}
+            className="px-4 py-2 rounded-lg border border-red-300 text-sm text-gray-700 hover:bg-red-100 transition"
+          >
+            Logout
           </button>
         </div>
       </div>

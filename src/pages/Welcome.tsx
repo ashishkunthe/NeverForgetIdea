@@ -1,4 +1,5 @@
 import { Github, Twitter } from "lucide-react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export function Welcome() {
@@ -6,9 +7,11 @@ export function Welcome() {
 
   const token = localStorage.getItem("token");
 
-  if (token) {
-    navigate("/ideas");
-  }
+  useEffect(() => {
+    if (token) {
+      navigate("/ideas");
+    }
+  }, []);
 
   return (
     <div className="min-h-screen bg-white text-black flex flex-col">

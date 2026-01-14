@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 
-const BACKEND_URL = "http://localhost:5000/idea/create";
+const BACKEND_URL = `${import.meta.env.BACKEND_URL}/idea/create`;
 
 export function AddIdeaModule({ setIsOpen }: any) {
   const [title, setTitle] = useState("");
